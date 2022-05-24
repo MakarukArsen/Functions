@@ -82,22 +82,16 @@ console.log(`Функція 7, 8: ${convertMoney("1000uah")}`);
 console.log(`Функція 7, 8: ${convertMoney("1000EUR")}`);
 
 // 9. Створіть функцію генерації випадкового паролю (тільки числа), довжина встановлюється користувачем або по замовчуванню = 8 символам.
-function createRandomPassword(length){
+function createRandomPassword(length = 8){
     let password = String(Math.trunc(Math.random() * 10));
-    if (length === undefined){
-        for (let i = 1; i < 8; i++){
-            password += Math.trunc(Math.random() * (8 - 1) + 1)
-        }
-    } else {
         for (let i = 1; i < length; i++){
             password += Math.trunc(Math.random() * (length - 1) + 1)
         }
-    }
     return password;
 
 }
 console.log(`Функція 9: ${createRandomPassword()}`);
-console.log(`Функція 9: ${createRandomPassword(4)}`);
+console.log(`Функція 9: ${createRandomPassword(5)}`);
 
 // 11. Створіть функцію, яка видаляє всі букви з речення.
 function deleteLetters(letterToRemove, word){
@@ -111,3 +105,49 @@ function deleteLetters(letterToRemove, word){
     return word;
 }
 console.log(`Функція 11: ${deleteLetters("a", "Amsterdam")}`);
+
+// 12.Створіть функцію, яка перевіряє, чи є слово паліндромом
+
+function isPalyndrom(word){
+    word = word.toLowerCase();
+    word = word.replace(" ", "")
+    let k = 0;
+    let j = word.length - 1;
+    let counter = 0;
+    for(let i = 0; i < word.length; i++){
+        if(word.slice(k, ++k) === word.slice(j, ++j)){
+            counter++;
+        }
+        k++;
+        j++;
+    }
+    if (counter === (word.length + 1) / 2){
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log(`Функція 12: ${isPalyndrom("Кажи хижак")}`);
+
+// 13. Створіть функцію, яка видалить з речення букви, які зустрічаються більше 1 разу.
+function deleteDuplicatedLetters(value){
+    value = value.toLowerCase();
+    for (let i = 0; i <= value.length; i++){
+        let testLetter = value[i];
+        let counter = 0;
+        for (let j = 0; j <= value.length; j++){
+            let secondTestLetter = value[j];
+            if (testLetter === secondTestLetter){
+                counter++;
+            }
+        }
+        j = 0;
+        if(counter >= 2){
+            value = value.replaceAll(testLetter, "");
+            console.log(value)
+            i = 0;
+        }
+    }
+    return value
+}
+console.log(`Функція 13: ${deleteDuplicatedLetters("Бісквіт був дуже ніжним")}`);
