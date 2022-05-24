@@ -33,14 +33,14 @@ function GetReName(word){
 console.log(`Функція 3: ${GetReName("aRSen")}`);
 
 // 4. Створити функцію, яка вираховує суму, що залишається після оплати податку від зарабітньої плати
-function calcPaymentAfterTaxes(money, taxes){
+const calcPaymentAfterTaxes = (money, taxes) => {
     const result = money - (money / 100) * taxes;
     return result
 }
 console.log(`Функція 4: ${calcPaymentAfterTaxes(1000, 19.5)}`);
 
 //  5. Створити функцію, яка повертає випадкове ціле число в діапазоні від N до M.
-function getRandomNumberInRange(min, max){
+const getRandomNumberInRange = (min, max) => {
     return result = Math.trunc(Math.random() * (++max - min) + min);
 }
 console.log(`Функція 5: ${getRandomNumberInRange(1, 10)}`);
@@ -60,7 +60,7 @@ console.log(`Функція 6: ${countLetter("а", "АбРАкадабра")}`);
 
 // 7. Створіть функцію, яка конвертує долари в гривні та навпаки в залежності від наявності символа $ або UAH в рядку.
 // 8. Врахуйте, інші валюти не конвертуються, потрібно виводити помилку, і також регістр uah не має значення.
-function convertMoney(money){
+const convertMoney = (money) => {
     money = money.toUpperCase();
     const exchangeRate = 25;
     let result;
@@ -82,7 +82,7 @@ console.log(`Функція 7, 8: ${convertMoney("1000uah")}`);
 console.log(`Функція 7, 8: ${convertMoney("1000EUR")}`);
 
 // 9. Створіть функцію генерації випадкового паролю (тільки числа), довжина встановлюється користувачем або по замовчуванню = 8 символам.
-function createRandomPassword(length = 8){
+const createRandomPassword = function (length = 8){
     let password = String(Math.trunc(Math.random() * 10));
         for (let i = 1; i < length; i++){
             password += Math.trunc(Math.random() * (length - 1) + 1)
@@ -94,7 +94,7 @@ console.log(`Функція 9: ${createRandomPassword()}`);
 console.log(`Функція 9: ${createRandomPassword(5)}`);
 
 // 11. Створіть функцію, яка видаляє всі букви з речення.
-function deleteLetters(letterToRemove, word){
+const deleteLetters = function (letterToRemove, word){
     letterToRemove = letterToRemove.toLowerCase();
     word = word.toLowerCase();
     for (let i = 0; i <= word.length; i++){
@@ -144,7 +144,6 @@ function deleteDuplicatedLetters(value){
         j = 0;
         if(counter >= 2){
             value = value.replaceAll(testLetter, "");
-            console.log(value)
             i = 0;
         }
     }
