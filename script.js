@@ -14,12 +14,17 @@ console.log(`Функція 1: ${getMaxDigit(2865)}`);
 // 2. Створити функцію, яка визначає ступінь числа. Не використовуючи Math.pow та **
 function getNumberToPow(numberOne, numberTwo){
     let result = numberOne;
-    for (let i = 1; i < numberTwo; i++){
+    for (let i = 1; i < Math.abs(numberTwo); i++){
         if (numberTwo === 1){
             return result;
+        } else if (numberTwo === 0){
+            return 1;
         }
         result *= numberOne;
     }
+    if (numberTwo < 0){
+        result = 1 / result;
+    }   
     return result;
 }
 console.log(`Функція 2: ${getNumberToPow(3, 3)}`);
@@ -47,6 +52,7 @@ console.log(`Функція 5: ${getRandomNumberInRange(1, 10)}`);
 
 //  6. Створити функцію, яка рахує скільки разів певна буква повторюється в слові
 function countLetter(letter, word){
+    letter = letter.toLowerCase();
     word = word.toLowerCase();
     let counter = 0;
     for (let i = 0; i <= word.length; i++){
@@ -64,6 +70,9 @@ const convertMoney = (money) => {
     money = money.toUpperCase();
     const exchangeRate = 25;
     let result;
+    if(isNaN(parseInt(money))){
+        return "Вводьте тільки числа числа"
+    }
     if (money.includes("$")){
         result = (parseInt(money) * exchangeRate) + "UAH";
         return result;
