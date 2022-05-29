@@ -12,18 +12,18 @@ function getMaxDigit(number){
 console.log(`Функція 1: ${getMaxDigit(2865)}`);
 
 // 2. Створити функцію, яка визначає ступінь числа. Не використовуючи Math.pow та **
-function getNumberToPow(value, valueToPow){
+function getNumberToPow(value, powValue){
     let result = value;
-    if (!valueToPow){
+    if (!powValue){
         return 1;
     }
-    if (valueToPow === 1){
+    if (powValue === 1){
         return result;
     } 
-    for (let i = 1; i < Math.abs(valueToPow); i++){
+    for (let i = 1; i < Math.abs(powValue); i++){
         result *= value;
     }
-    if (valueToPow < 0){
+    if (powValue < 0){
         result = 1 / result;
     }
     return result;
