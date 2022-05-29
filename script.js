@@ -12,18 +12,18 @@ function getMaxDigit(number){
 console.log(`Функція 1: ${getMaxDigit(2865)}`);
 
 // 2. Створити функцію, яка визначає ступінь числа. Не використовуючи Math.pow та **
-function getNumberToPow(numberOne, numberTwo){
-    let result = numberOne;
-    if (numberTwo === 0){
+function getNumberToPow(value, valueToPow){
+    let result = value;
+    if (!valueToPow){
         return 1;
     }
-    for (let i = 1; i < Math.abs(numberTwo); i++){
-        if (numberTwo === 1){
-            return result;
-        } 
-        result *= numberOne;
+    if (valueToPow === 1){
+        return result;
+    } 
+    for (let i = 1; i < Math.abs(valueToPow); i++){
+        result *= value;
     }
-    if (numberTwo < 0){
+    if (valueToPow < 0){
         result = 1 / result;
     }
     return result;
@@ -31,17 +31,17 @@ function getNumberToPow(numberOne, numberTwo){
 console.log(`Функція 2: ${getNumberToPow(3, 3)}`);
 
 // 3. Створити функцію, яка форматує ім'я, роблячи першу букву великою.
-function GetReName(word){
+function getReName(word){
     word = word.toLowerCase();
     let result = word[0].toUpperCase() + word.slice(1);
     return result;
 }
-console.log(`Функція 3: ${GetReName("aRSen")}`);
+console.log(`Функція 3: ${getReName("aRSen")}`);
 
 // 4. Створити функцію, яка вираховує суму, що залишається після оплати податку від зарабітньої плати
 const calcPaymentAfterTaxes = (money, taxes) => {
     const result = money - (money / 100) * taxes;
-    return result
+    return result;
 }
 console.log(`Функція 4: ${calcPaymentAfterTaxes(1000, 19.5)}`);
 
@@ -58,7 +58,7 @@ function countLetter(letter, word){
     let counter = 0;
     for (let i = 0; i <= word.length; i++){
         if (letter === word[i]){
-            counter++
+            counter++;
         }
     }
     return counter;
@@ -67,25 +67,24 @@ console.log(`Функція 6: ${countLetter("а", "АбРАкадабра")}`);
 
 // 7. Створіть функцію, яка конвертує долари в гривні та навпаки в залежності від наявності символа $ або UAH в рядку.
 // 8. Врахуйте, інші валюти не конвертуються, потрібно виводити помилку, і також регістр uah не має значення.
+const EXCHANGE_RATE = 25;
 const convertMoney = (money) => {
     money = money.toUpperCase();
-    const exchangeRate = 25;
     let result;
     if(isNaN(parseInt(money))){
-        return "Вводьте тільки числа числа"
+        return "Вводьте тільки числа числа";
     }
     if (money.includes("$")){
-        result = (parseInt(money) * exchangeRate) + "UAH";
+        result = (parseInt(money) * EXCHANGE_RATE) + "UAH";
         return result;
     }
     if (money.includes("UAH")){
-        result = (parseInt(money) / exchangeRate) + "$";
+        result = (parseInt(money) / EXCHANGE_RATE) + "$";
         return result;
     }
     if (!money.includes("$") || !money.includes("UAH")){
-        return "Ми не конвертуєм вашу валюту"
+        return "Ми не конвертуєм вашу валюту";
     }
-
 }
 console.log(`Функція 7, 8: ${convertMoney("100$")}`);
 console.log(`Функція 7, 8: ${convertMoney("1000uah")}`);
@@ -95,7 +94,7 @@ console.log(`Функція 7, 8: ${convertMoney("1000EUR")}`);
 const createRandomPassword = function (length = 8){
     let password = String(Math.trunc(Math.random() * 10));
         for (let i = 1; i < length; i++){
-            password += Math.trunc(Math.random() * (length - 1) + 1)
+            password += Math.trunc(Math.random() * (length - 1) + 1);
         }
     return password;
 
@@ -106,12 +105,7 @@ console.log(`Функція 9: ${createRandomPassword(5)}`);
 // 11. Створіть функцію, яка видаляє всі букви з речення.
 const deleteLetters = function (letterToRemove, word){
     letterToRemove = letterToRemove.toLowerCase();
-    word = word.toLowerCase();
-    for (let i = 0; i <= word.length; i++){
-        if (letterToRemove === word[i]) {
-            word = word.replace(letterToRemove, "");
-        }
-    }
+    word = word.toLowerCase().replaceAll(letterToRemove, "");
     return word;
 }
 console.log(`Функція 11: ${deleteLetters("a", "Amsterdam")}`);
@@ -119,25 +113,20 @@ console.log(`Функція 11: ${deleteLetters("a", "Amsterdam")}`);
 // 12.Створіть функцію, яка перевіряє, чи є слово паліндромом
 
 function isPalyndrom(word){
-    word = word.toLowerCase();
-    word = word.replace(" ", "")
-    let k = 0;
-    let j = word.length - 1;
+    word = word.toLowerCase().replaceAll(" ", "");
+    let startPosition = 0;
+    let endPosition = word.length - 1;
     let counter = 0;
     for(let i = 0; i < word.length; i++){
-        if(word.slice(k, ++k) === word.slice(j, ++j)){
+        if(word.slice(startPosition, ++startPosition) === word.slice(endPosition, ++endPosition)){
             counter++;
         }
-        k++;
-        j++;
+        startPosition++;
+        endPosition++;
     }
-    if (counter === (word.length + 1) / 2){
-        return true;
-    } else {
-        return false;
-    }
+    return (counter === (word.length + 1) / 2);
 }
-console.log(`Функція 12: ${isPalyndrom("Кажи хижак")}`);
+console.log(`Функція 12: ${isPalyndrom("Я несу гусеня")}`);
 
 // 13. Створіть функцію, яка видалить з речення букви, які зустрічаються більше 1 разу.
 function deleteDuplicatedLetters(value){
@@ -151,12 +140,11 @@ function deleteDuplicatedLetters(value){
                 counter++;
             }
         }
-        j = 0;
         if(counter >= 2){
             value = value.replaceAll(testLetter, "");
             i = 0;
         }
     }
-    return value
+    return value;
 }
 console.log(`Функція 13: ${deleteDuplicatedLetters("Бісквіт був дуже ніжним")}`);
