@@ -17,9 +17,6 @@ function getNumberToPow(value, powValue){
     if (!powValue){
         return 1;
     }
-    if (powValue === 1){
-        return result;
-    } 
     for (let i = 1; i < Math.abs(powValue); i++){
         result *= value;
     }
@@ -28,7 +25,7 @@ function getNumberToPow(value, powValue){
     }
     return result;
 }
-console.log(`Функція 2: ${getNumberToPow(3, 3)}`);
+console.log(`Функція 2: ${getNumberToPow(3, 1)}`);
 
 // 3. Створити функцію, яка форматує ім'я, роблячи першу букву великою.
 function getReName(word){
