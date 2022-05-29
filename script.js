@@ -25,7 +25,7 @@ function getNumberToPow(value, powValue){
     }
     return result;
 }
-console.log(`Функція 2: ${getNumberToPow(3, 1)}`);
+console.log(`Функція 2: ${getNumberToPow(3, 3)}`);
 
 // 3. Створити функцію, яка форматує ім'я, роблячи першу букву великою.
 function getReName(word){
